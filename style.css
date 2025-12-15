@@ -1,0 +1,92 @@
+:root {
+    --bg-color: #050505; /* Nero quasi assoluto */
+    --text-color: #e0e0e0;
+    --accent-color: #4a90e2; /* Un blu freddo, "elettrico" */
+    --error-color: #ff4b4b;
+    --font-main: 'Courier New', Courier, monospace; /* Font tecnico/retro */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Niente scroll, sembra un'app nativa */
+}
+
+/* Effetto righe vecchie TV (Scanlines) */
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0,0,0,0.2) 50%,
+        rgba(0,0,0,0.2)
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+#game-container {
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    z-index: 20;
+    padding: 20px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background: rgba(20, 20, 20, 0.8);
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+p {
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    color: #888;
+}
+
+/* Stile Bottoni */
+button {
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 15px 30px;
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+button:hover {
+    background: var(--accent-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+/* Utility per nascondere elementi */
+.hidden {
+    display: none;
+}
