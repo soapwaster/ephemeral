@@ -161,18 +161,89 @@ function levelOneComplete() {
     }, 1500);
 }
 
-// --- LIVELLO 2: VIDEO & DOMANDA (Placeholder) ---
+// --- LIVELLO 2: ATTENZIONE SELETTIVA ---
+
 function initLevel2() {
+    // ID del video YouTube (Invisible Gorilla)
+    // Se vuoi cambiarlo, metti qui il nuovo ID (quello dopo v= nell'URL)
+    const videoId = "vJG698U2Mvo"; 
+
     container.innerHTML = `
-        <h2>Livello 2: Analisi Visiva</h2>
-        <p>Osserva il filmato.</p>
-        <div style="background: #000; height: 200px; display: flex; align-items:center; justify-content:center; margin-bottom: 20px;">
-            [QUI ANDRÀ IL VIDEO]
+        <h2>Livello 2: Attenzione Selettiva</h2>
+        <p id="instruction-text">Osserva attentamente il video.<br>Conta quanti passaggi fa la squadra con la maglietta <strong>BIANCA</strong>.</p>
+        
+        <div class="video-wrapper">
+            <iframe id="game-video" 
+                src="https://www.youtube.com/embed/${videoId}?controls=0&modestbranding=1&rel=0" 
+                title="Selective Attention Test" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
         </div>
-        <input type="text" placeholder="Risposta..." style="background:transparent; border:1px solid #555; color:white; padding:10px; margin-bottom:10px;">
-        <br>
-        <button onclick="loadLevel(3)">Invia Risposta</button>
+
+        <div id="interaction-area">
+            <p>Hai finito di guardare?</p>
+            <button class="btn-glitch" onclick="showQuestionLevel2()">Inserisci Risposta</button>
+        </div>
     `;
+}
+
+function showQuestionLevel2() {
+    const interactionArea = document.getElementById('interaction-area');
+    
+    interactionArea.innerHTML = `
+        <p>Quanti passaggi hanno fatto i bianchi?</p>
+        <div style="display:flex; justify-content:center; align-items:center; gap:10px;">
+            <input type="number" id="video-answer" class="input-void" placeholder="00">
+            <button onclick="revealLevel2()" style="padding: 10px 20px;">CONFERMA</button>
+        </div>
+    `;
+}
+
+function revealLevel2() {
+    // Non ci interessa cosa ha scritto l'utente, la logica è sempre la stessa.
+    // Nel video del gorilla la risposta è 16, ma l'obiettivo è il gorilla.
+    
+    const interactionArea = document.getElementById('interaction-area');
+    const instructions = document.getElementById('instruction-text');
+    
+    // Cambiamo istruzioni
+    instructions.innerHTML = "La tua memoria ti inganna.";
+    instructions.style.color = "var(--error-color)";
+
+    interactionArea.innerHTML = `
+        <div class="revelation-text">
+            <p>La risposta corretta è <strong>16</strong>.</p>
+            <br>
+            <p>Ma hai visto il <strong>GORILLA</strong>?</p>
+        </div>
+        <br>
+        <button onclick="replayAndAdvance()">Riguarda il video (Cerca il Gorilla)</button>
+    `;
+}
+
+function replayAndAdvance() {
+    // Ricarichiamo l'iframe per far ripartire il video da zero
+    // E cambiamo il pulsante per andare al prossimo livello
+    const iframe = document.getElementById('game-video');
+    const currentSrc = iframe.src;
+    iframe.src = currentSrc; // Hack per riavviare il video iframe
+
+    const interactionArea = document.getElementById('interaction-area');
+    
+    interactionArea.innerHTML = `
+        <p>Ora lo vedi, vero?</p>
+        <button class="btn-glitch" onclick="finishLevel2()">Procedi al Livello 3</button>
+    `;
+}
+
+function finishLevel2() {
+    // Simulazione transizione
+    container.innerHTML = "<h2>Analisi Completata...</h2>";
+    setTimeout(() => {
+        loadLevel(3);
+    }, 1500);
 }
 
 // --- SCHERMATA FINALE ---
@@ -184,3 +255,5 @@ function initFinalScreen() {
         <button id="unlock-btn">SBLOCCA</button>
     `;
 }
+
+
