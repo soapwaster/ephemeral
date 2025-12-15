@@ -162,7 +162,7 @@ function levelOneComplete() {
 }
 
 // --- LIVELLO 2: ATTENZIONE SELETTIVA ---
-const LEVEL2_DURATION_SECONDS = 40; // Definiamo i secondi di riproduzione
+const LEVEL2_DURATION_SECONDS = 38; // Definiamo i secondi di riproduzione
 
 function initLevel2() {
     // ID del video YouTube (Invisible Gorilla)
@@ -249,7 +249,7 @@ function revealLevel2() {
         <div class="revelation-text">
             <p>La risposta corretta è <strong>16</strong>.</p>
             <br>
-            <p>Ma hai visto il <strong>GORILLA</strong>?</p>
+            <p><strong>Ma hai visto il GORILLA</strong>?</p>
         </div>
         <br>
         <button onclick="replayAndAdvance()">Riguarda il video (Cerca il Gorilla)</button>
