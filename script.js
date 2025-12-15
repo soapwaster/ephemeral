@@ -162,11 +162,14 @@ function levelOneComplete() {
 }
 
 // --- LIVELLO 2: ATTENZIONE SELETTIVA ---
+const LEVEL2_DURATION_SECONDS = 40; // Definiamo i secondi di riproduzione
 
 function initLevel2() {
     // ID del video YouTube (Invisible Gorilla)
-    // Se vuoi cambiarlo, metti qui il nuovo ID (quello dopo v= nell'URL)
     const videoId = "vJG698U2Mvo"; 
+
+    // Variabile per tenere traccia dello stato
+    let videoStopped = false; 
 
     container.innerHTML = `
         <h2>Livello 2: Attenzione Selettiva</h2>
@@ -174,20 +177,50 @@ function initLevel2() {
         
         <div class="video-wrapper">
             <iframe id="game-video" 
-                src="https://www.youtube.com/embed/${videoId}?controls=0&modestbranding=1&rel=0" 
+                src="https://www.youtube.com/embed/${videoId}?controls=0&modestbranding=1&rel=0&autoplay=1&start=5" 
                 title="Selective Attention Test" 
                 frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allow="autoplay; encrypted-media; gyroscope;" 
                 allowfullscreen>
             </iframe>
         </div>
 
         <div id="interaction-area">
-            <p>Hai finito di guardare?</p>
-            <button class="btn-glitch" onclick="showQuestionLevel2()">Inserisci Risposta</button>
+            <p>Video in riproduzione...</p>
+            <button id="show-q-btn" class="btn-glitch" disabled>Attendere</button>
         </div>
     `;
+
+    const interactionArea = document.getElementById('interaction-area');
+    const iframe = document.getElementById('game-video');
+    const questionButton = document.getElementById('show-q-btn');
+
+    // Funzione che scatta dopo 40 secondi
+    setTimeout(() => {
+        if (!videoStopped) {
+            videoStopped = true;
+            
+            // 1. Ferma il video ricaricando l'iframe senza autoplay
+            // Questo blocca di fatto la riproduzione.
+            iframe.src = `https://www.youtube.com/embed/${videoId}?controls=0&modestbranding=1&rel=0`;
+
+            // 2. Nasconde l'iframe (opzionale, ma pulito)
+            iframe.style.opacity = '0.5'; 
+
+            // 3. Abilita l'utente a procedere
+            questionButton.disabled = false;
+            questionButton.textContent = 'Inserisci Risposta';
+            
+            interactionArea.querySelector('p').textContent = 'Tempo scaduto.';
+            
+            questionButton.onclick = showQuestionLevel2; // Collega la funzione
+        }
+    }, LEVEL2_DURATION_SECONDS * 1000); // Converte i secondi in millisecondi
 }
+
+// Le altre funzioni (showQuestionLevel2, revealLevel2, replayAndAdvance, finishLevel2)
+// rimangono INVARIATE, ma la funzione showQuestionLevel2 viene ora
+// attivata dal click del bottone dopo che il timer è scaduto.
 
 function showQuestionLevel2() {
     const interactionArea = document.getElementById('interaction-area');
