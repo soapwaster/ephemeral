@@ -31,8 +31,7 @@ function loadLevel(levelNumber) {
             initLevel2();
             break;
         case 3:
-            container.innerHTML = '<h2>Livello 3: In costruzione...</h2>';
-            // initLevel3();
+            initLevel3();
             break;
         case 99:
             initFinalScreen();
@@ -278,6 +277,165 @@ function finishLevel2() {
         loadLevel(3);
     }, 1500);
 }
+
+// --- LIVELLO 3: VITA LIQUIDA ---
+
+function initLevel3() {
+    container.innerHTML = `
+        <div id="level3-container">
+            <h2 id="l3-title" style="display:none">Accesso Memoria Profonda...</h2>
+            <img id="memory-img" class="memory-image" src="" alt="Ricordo" style="display:none;">
+            <p id="memory-txt" class="memory-text"></p>
+        </div>
+    `;
+
+    startImageSequence();
+}
+
+function startImageSequence() {
+    const imgElement = document.getElementById('memory-img');
+    imgElement.style.display = 'block';
+
+    // --- CONFIGURAZIONE FOTO ---
+    // Inserisci qui i link alle tue 10 foto. 
+    // Ho messo dei placeholder di 'picsum' per ora.
+    const images = [
+        'https://picsum.photos/400/300?random=1',
+        'https://picsum.photos/400/300?random=2',
+        'https://picsum.photos/400/300?random=3',
+        'https://picsum.photos/400/300?random=4',
+        'https://picsum.photos/400/300?random=5',
+        'https://picsum.photos/400/300?random=6',
+        'https://picsum.photos/400/300?random=7',
+        'https://picsum.photos/400/300?random=8',
+        'https://picsum.photos/400/300?random=9',
+        'https://picsum.photos/400/300?random=10'
+    ];
+
+    let index = 0;
+
+    // Funzione ricorsiva per mostrare le immagini
+    function showNextImage() {
+        if (index >= images.length) {
+            // Immagini finite, nascondi elemento e passa ai testi
+            imgElement.style.display = 'none';
+            startTextSequence();
+            return;
+        }
+
+        // Imposta la sorgente
+        imgElement.src = images[index];
+        
+        // FADE IN
+        setTimeout(() => {
+            imgElement.classList.add('visible');
+        }, 100); // Piccolo ritardo per permettere al browser di renderizzare
+
+        // FADE OUT (dopo 1.8s, così a 2.0s è sparita ed è pronta la prossima)
+        setTimeout(() => {
+            imgElement.classList.remove('visible');
+        }, 1800);
+
+        // NEXT STEP (dopo 2s esatti)
+        setTimeout(() => {
+            index++;
+            showNextImage();
+        }, 2000);
+    }
+
+    // Avvia il ciclo
+    showNextImage();
+}
+
+function startTextSequence() {
+    const txtElement = document.getElementById('memory-txt');
+
+    // --- CONFIGURAZIONE DOMANDE ---
+    const messages = [
+        "Ti ricordi che bella la vacanza in Cina?",
+        "Hai presente la stella dell'albero di Natale?",
+        "Come si chiamava quel posto dove hai comprato le scarpe?"
+    ];
+
+    let index = 0;
+
+    function showNextText() {
+        if (index >= messages.length) {
+            // Testi finiti, mostra il finale
+            showFinalInputLevel3();
+            return;
+        }
+
+        txtElement.textContent = messages[index];
+
+        // FADE IN
+        setTimeout(() => {
+            txtElement.classList.add('visible');
+        }, 100);
+
+        // FADE OUT (dopo 2.5s)
+        setTimeout(() => {
+            txtElement.classList.remove('visible');
+        }, 2500);
+
+        // NEXT STEP (dopo 3s)
+        setTimeout(() => {
+            index++;
+            showNextText();
+        }, 3000);
+    }
+
+    showNextText();
+}
+
+function showFinalInputLevel3() {
+    const levelContainer = document.getElementById('level3-container');
+    
+    // Pulisce il contenitore precedente
+    levelContainer.innerHTML = '';
+    
+    // Crea la schermata finale del livello
+    const finalDiv = document.createElement('div');
+    finalDiv.className = 'final-message-container';
+    
+    finalDiv.innerHTML = `
+        <p class="final-quote">"La vita liquida scivola tra le curve del cervello. Solidifichiamola."</p>
+        <p>Mandami un messaggio con il nome del ......</p>
+        <br>
+        <div style="display:flex; justify-content:center; gap:10px;">
+            <input type="text" id="final-keyword-input" class="input-void" placeholder="...">
+            <button class="btn-glitch" onclick="checkFinalKeyword()">INVIA</button>
+        </div>
+        <p id="error-msg" style="color:var(--error-color); display:none; margin-top:10px;">Errore di connessione neurale.</p>
+    `;
+
+    levelContainer.appendChild(finalDiv);
+}
+
+function checkFinalKeyword() {
+    const input = document.getElementById('final-keyword-input').value.toLowerCase().trim();
+    const errorMsg = document.getElementById('error-msg');
+
+    // --- CONFIGURAZIONE RISPOSTA ESATTA ---
+    // Scegli tu la parola che l'utente deve indovinare.
+    // Esempio: "cane", "nulla", "tempo", oppure la risposta alla domanda delle scarpe.
+    const correctAnswers = ["cane", "gatto", "test"]; 
+
+    if (correctAnswers.includes(input)) {
+        // SUCCESSO
+        loadLevel(99); // Vai alla schermata finale del gioco (definita nel primo script)
+    } else {
+        // ERRORE
+        errorMsg.style.display = 'block';
+        errorMsg.textContent = "Dato non corrispondente. Riprova.";
+        
+        // Scuote l'input (piccolo tocco di classe)
+        const inputField = document.getElementById('final-keyword-input');
+        inputField.style.animation = "shake 0.5s";
+        setTimeout(() => { inputField.style.animation = ""; }, 500);
+    }
+}
+
 
 // --- SCHERMATA FINALE ---
 function initFinalScreen() {
