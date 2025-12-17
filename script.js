@@ -28,7 +28,7 @@ function loadLevel(levelNumber) {
             initLevel1();
             break;
         case 2:
-            initLevel3();
+            initLevel2();
             break;
         case 3:
             initLevel3();
