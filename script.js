@@ -300,16 +300,18 @@ function startImageSequence() {
     // Inserisci qui i link alle tue 10 foto. 
     // Ho messo dei placeholder di 'picsum' per ora.
     const images = [
-        'https://picsum.photos/400/300?random=1',
-        'https://picsum.photos/400/300?random=2',
-        'https://picsum.photos/400/300?random=3',
-        'https://picsum.photos/400/300?random=4',
-        'https://picsum.photos/400/300?random=5',
-        'https://picsum.photos/400/300?random=6',
-        'https://picsum.photos/400/300?random=7',
-        'https://picsum.photos/400/300?random=8',
-        'https://picsum.photos/400/300?random=9',
-        'https://picsum.photos/400/300?random=10'
+        'images/i0.jpeg',
+        'images/i1.jpeg',
+        'images/i2.jpeg',
+        'images/i3.jpeg',
+        'images/i4.jpeg',
+        'images/i5.jpeg',
+        'images/i6.jpeg',
+        'images/i7.jpeg',
+        'images/i8.jpeg',
+        'images/i9.jpeg',
+        'images/i10.jpeg',
+        
     ];
 
     let index = 0;
