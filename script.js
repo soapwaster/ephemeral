@@ -310,7 +310,6 @@ function startImageSequence() {
         'images/i9.jpeg',
         'images/i10.jpeg',
         'images/i2.jpeg',
-        
     ];
 
     let index = 0;
