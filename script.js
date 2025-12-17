@@ -300,7 +300,7 @@ function startImageSequence() {
     // Inserisci qui i link alle tue 10 foto. 
     // Ho messo dei placeholder di 'picsum' per ora.
     const images = [
-        'images/i2.jpeg',
+        'images/i0.jpeg',
         'images/i3.jpeg',
         'images/i4.jpeg',
         'images/i5.jpeg',
@@ -309,7 +309,7 @@ function startImageSequence() {
         'images/i8.jpeg',
         'images/i9.jpeg',
         'images/i10.jpeg',
-        'images/i0.jpeg',
+        'images/i2.jpeg',
         
     ];
 
@@ -335,13 +335,13 @@ function startImageSequence() {
         // FADE OUT (dopo 1.8s, così a 2.0s è sparita ed è pronta la prossima)
         setTimeout(() => {
             imgElement.classList.remove('visible');
-        }, 1000);
+        }, 800);
 
         // NEXT STEP (dopo 2s esatti)
         setTimeout(() => {
             index++;
             showNextImage();
-        }, 1500);
+        }, 800);
     }
 
     // Avvia il ciclo
