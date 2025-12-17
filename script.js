@@ -300,8 +300,6 @@ function startImageSequence() {
     // Inserisci qui i link alle tue 10 foto. 
     // Ho messo dei placeholder di 'picsum' per ora.
     const images = [
-        'images/i0.jpeg',
-        'images/i1.jpeg',
         'images/i2.jpeg',
         'images/i3.jpeg',
         'images/i4.jpeg',
@@ -311,6 +309,7 @@ function startImageSequence() {
         'images/i8.jpeg',
         'images/i9.jpeg',
         'images/i10.jpeg',
+        'images/i0.jpeg',
         
     ];
 
@@ -336,13 +335,13 @@ function startImageSequence() {
         // FADE OUT (dopo 1.8s, così a 2.0s è sparita ed è pronta la prossima)
         setTimeout(() => {
             imgElement.classList.remove('visible');
-        }, 1800);
+        }, 1000);
 
         // NEXT STEP (dopo 2s esatti)
         setTimeout(() => {
             index++;
             showNextImage();
-        }, 2000);
+        }, 1500);
     }
 
     // Avvia il ciclo
@@ -402,12 +401,7 @@ function showFinalInputLevel3() {
     
     finalDiv.innerHTML = `
         <p class="final-quote">"La vita liquida scivola tra le curve del cervello. Solidifichiamola."</p>
-        <p>Mandami un messaggio con il nome del ......</p>
-        <br>
-        <div style="display:flex; justify-content:center; gap:10px;">
-            <input type="text" id="final-keyword-input" class="input-void" placeholder="...">
-            <button class="btn-glitch" onclick="checkFinalKeyword()">INVIA</button>
-        </div>
+        <p>Mandami un messaggio con il nome del paese dove hai fatto aperitivo alle 11:00</p>
         <p id="error-msg" style="color:var(--error-color); display:none; margin-top:10px;">Errore di connessione neurale.</p>
     `;
 
