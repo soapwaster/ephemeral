@@ -25,10 +25,10 @@ function loadLevel(levelNumber) {
 
     switch(levelNumber) {
         case 1:
-            initLevel3();
+            initLevel1();
             break;
         case 2:
-            initLevel2();
+            initLevel3();
             break;
         case 3:
             initLevel3();
