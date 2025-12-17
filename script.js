@@ -50,8 +50,8 @@ const totalPairs = 3; // 6 carte totali = 3 coppie
 
 function initLevel1() {
     container.innerHTML = `
-        <h2>Livello 1: Sincronizzazione</h2>
-        <p>Trova le coppie per stabilizzare il segnale.</p>
+        <h2>Livello 1</h2>
+        <p>Trova le coppie</p>
         <div class="memory-grid" id="memory-board"></div>
         <div id="level-feedback" class="hidden">Segnale Stabilizzato...</div>
     `;
