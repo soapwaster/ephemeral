@@ -61,7 +61,7 @@ function initLevel1() {
     // --- CONFIGURAZIONE IMMAGINI ---
     // Puoi mettere qui Emoji, Testo, o tag HTML <img>
     // Esempio futuro: '<img src="img/occhio.png">'
-    const items = ['👁️', '🧬', '🔮']; 
+    const items = ['👍', '🙈', '🍉']; 
     
     // Duplichiamo gli elementi per creare le coppie (3x2 = 6)
     const deck = [...items, ...items];
@@ -171,7 +171,7 @@ function initLevel2() {
     let videoStopped = false; 
 
     container.innerHTML = `
-        <h2>Livello 2: Attenzione Selettiva</h2>
+        <h2>Livello 2</h2>
         <p id="instruction-text">Osserva attentamente il video.<br>Conta quanti passaggi fa la squadra con la maglietta <strong>BIANCA</strong>.</p>
         
         <div class="video-wrapper">
@@ -353,7 +353,7 @@ function startTextSequence() {
     // --- CONFIGURAZIONE DOMANDE ---
     const messages = [
         "Ti ricordi che bella la vacanza in Cina?",
-        "Hai presente la stella dell'albero di Natale?",
+        "Hai presente la stella sull'albero di Natale?",
         "Come si chiamava quel posto dove hai comprato le scarpe?"
     ];
 
