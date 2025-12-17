@@ -25,10 +25,10 @@ function loadLevel(levelNumber) {
 
     switch(levelNumber) {
         case 1:
-            initLevel1();
+            initLevel3();
             break;
         case 2:
-            initLevel3();
+            initLevel2();
             break;
         case 3:
             initLevel3();
@@ -334,13 +334,13 @@ function startImageSequence() {
         // FADE OUT (dopo 1.8s, così a 2.0s è sparita ed è pronta la prossima)
         setTimeout(() => {
             imgElement.classList.remove('visible');
-        }, 800);
+        }, 1000);
 
         // NEXT STEP (dopo 2s esatti)
         setTimeout(() => {
             index++;
             showNextImage();
-        }, 800);
+        }, 1300);
     }
 
     // Avvia il ciclo
